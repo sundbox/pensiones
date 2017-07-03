@@ -1,0 +1,18 @@
+<h3>¿Cuanto Cobras?</h3>
+
+<div class="form-group text-center">
+    <input 
+    	type="number" 
+    	class="form-control" 
+    	id="sueldo" 
+    	min=0
+    	required
+    	placeholder="Pon tu sueldo aqui"
+    	[(ngModel)]="sueldo">
+  </div>
+
+
+  <button class="btn btn-primary btn-lg" 
+  			 (click)="siguiente()"
+			 [ngClass]="(sueldo == 0 || sueldo == null) ? 'disabled' : ''"
+  			 >Siguiente</button>
