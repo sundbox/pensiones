@@ -9,7 +9,13 @@ export class DatosService {
   meses_computables:number = 300;
   divisor:number=350;
 
+  cesta_consumo:number = 1658.96;
+
   ipc = 0.0226;
+
+  resultado1:number;
+  resultado2:number;
+  resultado3:number;
 
   escenario1 = {
   	pension_max: 2573.70,
@@ -101,18 +107,22 @@ export class DatosService {
 	}
 
 	setItem(nombre:string, valor:any) {
-
+		debugger;
 		if(this.data.length > 0) {
-
+			let existe = false;
 			for(let key in this.data) {
-				if(this.data[key].nombre == nombre) {
+				if(this.data[key].nombre === nombre) { //Si existe
 					 this.data[key].nombre = nombre;
 					 this.data[key].valor = valor;
-					 
-				} else {
-					this.data.push({nombre: nombre, valor: valor});
-				}
+					 existe = true;
+					 break;
+				} 
 			}
+
+			if(existe === false) {
+				this.data.push({nombre: nombre, valor: valor});
+			}
+
 		} else {
 			this.data.push({nombre: nombre, valor: valor});
 		}
@@ -178,18 +188,6 @@ export class DatosService {
 		    }
 		  }
 		}
-	}
-
-	potencia(numero:number, bucles:number):number {
-
-		let contador = 1;
-		let resultado = numero;
-		while(contador <= bucles) {
-			resultado = resultado * numero;
-			contador++;
-		}
-
-		return resultado;
 	}
 
 }
