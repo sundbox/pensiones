@@ -29,6 +29,4 @@ export class Paso3Component implements OnInit {
   		this.router.navigate(['/paso5']);
   	}
   }
-
-
 }

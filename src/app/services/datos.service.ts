@@ -7,11 +7,12 @@ export class DatosService {
 
   meses_cotizados:number = 416;
   meses_computables:number = 300;
+
   divisor:number=350;
 
   cesta_consumo:number = 1658.96;
 
-  ipc = 0.0226;
+  ipc:number = 0.0226;
 
   resultado1:number;
   resultado2:number;
@@ -107,7 +108,6 @@ export class DatosService {
 	}
 
 	setItem(nombre:string, valor:any) {
-		debugger;
 		if(this.data.length > 0) {
 			let existe = false;
 			for(let key in this.data) {
@@ -153,7 +153,7 @@ export class DatosService {
 				break;
 		}
 
-		let base_cotizacion_25 = this.getItem('sueldo') * Math.pow(1 + this.ipc, 25);
+		let base_cotizacion_25 = this.getItem('sueldo')  * Math.pow(1 + this.ipc, 23);
 
 		let base_cotizacion = (base_cotizacion_25 * this.meses_computables) / this.divisor;
 		
