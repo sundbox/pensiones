@@ -10,7 +10,7 @@ export class Paso11Component implements OnInit {
 
   pension:number;
   constructor( private _datos:DatosService ) { 
-  	this.pension = this._datos.getItem('resultado1');
+  	this.pension = this._datos.getItem('pensionMax');
   }
 
   ngOnInit() {

@@ -11,11 +11,13 @@ export class InputSueldoComponent implements OnInit {
 
 	sueldo:number = null;
   meses_cotizados:number = 416;
+  anyosCotizados:number = 34;
 
   constructor( private router:Router,
   				private _datos:DatosService ) { 
     this.sueldo = this._datos.getItem('sueldo');
     this.meses_cotizados = this._datos.getItem('meses_cotizados');
+    this.anyosCotizados = this._datos.getItem('anyosCotizados');
   }
 
   ngOnInit() {
@@ -24,6 +26,7 @@ export class InputSueldoComponent implements OnInit {
   siguiente() {
   	this._datos.setItem('sueldo', this.sueldo);
     this._datos.setItem('meses_cotizados', this.meses_cotizados)
+    this._datos.setItem('anyosCotizados', this.anyosCotizados);
   	this.router.navigate(['paso3']);
   }
 }

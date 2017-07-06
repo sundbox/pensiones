@@ -11,12 +11,23 @@
     	required
     	placeholder="Pon tu sueldo aqui"
     	[(ngModel)]="sueldo">
+
+     <input 
+      type="number" 
+      class="form-control" 
+      id="anyosCotizados" 
+      min=0
+      max=36
+      required
+      [(ngModel)]="anyosCotizados">
+
   </div>
 
 
   <button class="btn btn-primary btn-lg" 
   			 (click)="siguiente()"
-			 [ngClass]="(sueldo == 0 || sueldo == null) ? 'disabled' : ''"
+			 [ngClass]="(sueldo == 0 || sueldo == null || 
+                  anyosCotizados == 0 ||anyosCotizados > 36 || anyosCotizados == null) ? 'disabled' : ''"
   			 >Siguiente</button>
 
 </div>

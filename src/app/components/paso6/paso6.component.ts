@@ -12,7 +12,10 @@ export class Paso6Component implements OnInit {
 
   resultado:number; 
   constructor( private _datos:DatosService ) { 
-  	this.resultado = this._datos.calculaEscenario(1) - this._datos.getItem('resultado1');
+    debugger;
+  	//this.resultado = this._datos.calculaEscenario(1) - this._datos.getItem('resultado1');
+    this.resultado = this._datos.getItem('baseCotizacionMensual')-this._datos.getItem('resultado1');
+    
   }
 
   ngOnInit() {

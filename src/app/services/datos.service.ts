@@ -8,7 +8,7 @@ export class DatosService {
   meses_cotizados:number = 416;
   meses_computables:number = 300;
 
-  divisor:number=350;
+  divisor:number=350/12;
 
   cesta_consumo:number = 1658.96;
 
@@ -153,32 +153,45 @@ export class DatosService {
 				break;
 		}
 
-		let base_cotizacion_25 = this.getItem('sueldo')  * Math.pow(1 + this.ipc, 23);
+		let numAnyosCotizados = this.getItem('anyosCotizados');
 
-		let base_cotizacion = (base_cotizacion_25 * this.meses_computables) / this.divisor;
+		let numMesesCotizados = numAnyosCotizados * 12;
+
+
+		//let base_cotizacion_25 = this.getItem('sueldo')  * Math.pow(1 + this.ipc, 23);
+
+		debugger;
+
+		let base_cotizacion_25 = this.calculoBaseCotizacionAnual(this.getItem('sueldo'));
+
+		let base_cotizacion = base_cotizacion_25 / this.divisor;
+
+		let base_cotizacion_mensual = base_cotizacion/12;
+
+		this.setItem('baseCotizacionMensual', base_cotizacion_mensual);
 		
-		if(this.meses_cotizados >= escenario.tramo4.max) {
-		  return base_cotizacion * escenario.tramo4.porcentaje;
+		if(numMesesCotizados >= escenario.tramo4.min) {
+		  return base_cotizacion_mensual * escenario.tramo4.porcentaje;
 		} else {
-		  if(this.meses_cotizados == escenario.tramo1.max) {
-		    return base_cotizacion * escenario.tramo1.porcentaje;
+		  if(numMesesCotizados == escenario.tramo1.max) {
+		    return base_cotizacion_mensual * escenario.tramo1.porcentaje;
 		  } else {
-		    if(this.meses_cotizados <= escenario.tramo2.max) {
-		      return base_cotizacion * 
-		          ( escenario.tramo2.porcentaje + ((this.meses_cotizados - escenario.tramo2.min) * 
+		    if(numMesesCotizados <= escenario.tramo2.max) {
+		      return base_cotizacion_mensual * 
+		          ( escenario.tramo1.porcentaje + ((numMesesCotizados - escenario.tramo2.min) * 
 		          	escenario.tramo2.porcentaje));
 		    } else {
-		      if(this.meses_cotizados <= escenario.tramo3.max) {
+		      if(numMesesCotizados <= escenario.tramo3.max) {
 		        return ( escenario.tramo1.porcentaje +
 		        		 (
 		        		 	(escenario.tramo2.max - escenario.tramo2.min) * 
 		              		escenario.tramo2.porcentaje
 		              	 ) + 
 		        		(
-		        			(this.meses_cotizados - escenario.tramo3.min) *
+		        			(numMesesCotizados - escenario.tramo3.min) *
 		              		escenario.tramo3.porcentaje)
 		        		)
-		        	* base_cotizacion;
+		        	* base_cotizacion_mensual;
 
 		       
 
@@ -190,4 +203,34 @@ export class DatosService {
 		}
 	}
 
+	calculoBaseCotizacionAnual(sueldo:number):any{
+
+		let baseCotizacionTotal = 0;
+
+		let sueldoAnual = sueldo * 12;
+
+		let primeros2Anyos = sueldoAnual * 2;
+
+		let sumAnyo25A3 = 0;
+
+		for (var i=3; i<=25; i++) {
+      		sumAnyo25A3 += sueldoAnual * Math.pow(1 + this.ipc,i);
+    	}
+
+    	baseCotizacionTotal = primeros2Anyos+sumAnyo25A3;
+
+    	return baseCotizacionTotal;
+
+	}
+
+	pensionLimitadaPara2013yCambioNorma(pension:number):any{
+		if(pension>2573.7){
+			pension = 2573.7;
+		}else if(pension<605.10){
+			pension = 605.10;
+		}
+		return pension;
+	}
+
 }
+

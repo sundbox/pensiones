@@ -51,6 +51,7 @@ export class Paso12Component implements OnInit {
 
 
   constructor( private _datos:DatosService  ) { 
+    debugger;
   	this.pension = this._datos.getItem('resultado1');
   	this.calcula10anos();
   }
@@ -88,7 +89,7 @@ export class Paso12Component implements OnInit {
 
   	let ingresos_min:number[] = [];
   	let contador = 1;
-  	let ing_min_temp = 2073.70;
+  	let ing_min_temp = this._datos.getItem('pensionMax');
   	while (contador <= 10) {
   		ingresos_min.push(ing_min_temp);
   		contador++;
@@ -97,7 +98,7 @@ export class Paso12Component implements OnInit {
 
   	let ingresos_max:number[] = [];
   	 contador = 1;
-  	let ing_max_temp = 2073.70;
+  	let ing_max_temp = this._datos.getItem('pensionMax');
   	while (contador <= 10) {
   		ingresos_max.push(ing_max_temp);
   		contador++;
@@ -106,11 +107,11 @@ export class Paso12Component implements OnInit {
 
   	let gastos:number[] = [];
   	contador = 1;
-  	let gastos_temp = 1658.96;
+  	let gastos_temp = this._datos.getItem('pensionMax')*0.8;
   	while (contador <= 10) {
   		gastos.push(gastos_temp);
   		contador++;
-  		gastos_temp = gastos_temp * 1.0276;
+  		gastos_temp = gastos_temp * 1.0226;
   	}
 
   	this.lineChartData = [
