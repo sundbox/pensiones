@@ -7,9 +7,16 @@ import { DatosService } from '../../services/datos.service';
 })
 export class Paso4Component implements OnInit {
 
-  pension:number;
+  pensionLim2013:number;
+  gananciaPoder:boolean = false;
   constructor( private _datos:DatosService ) { 
-  	this.pension = this._datos.getItem('resultado1');
+  	this.pensionLim2013 = this._datos.getItem('pensionLim2013');
+  	//Comprobamos si ha perdido o ganando
+	let pension2013 = this._datos.getItem('pension2013');
+  	if(this.pensionLim2013>pension2013){
+  		this.gananciaPoder = true;
+  	}
+
   }
 
   ngOnInit() {

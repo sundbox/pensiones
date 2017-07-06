@@ -1,11 +1,20 @@
-<div class="text-center animated fadeIn">
+<div class="text-center animated fadeIn" >
 
-<h3>Hay que trabajar mas para obtener la misma cuantía</h3>
-<h3>Si aplicamos la norma de 2022, que será la que usted tenga cuando se jubile, tendrá una pérdida de poder adquisitivo de:</h3>
+	<div *ngIf="gananciaPoder2013YCN == false">
 
-<h1><span class="badge badge-danger">{{resultado | currency:'EUR':true}}</span></h1>
+		<h3>Hay que trabajar mas para obtener la misma cuantía</h3>
+		<h3>Si aplicamos la norma de 2022, que será la que usted tenga cuando se jubile, tendrá una pérdida de poder adquisitivo de:</h3>
 
+		<h1><span class="badge badge-danger">{{resultado | currency:'EUR':true}}</span></h1>
 
-<hr>
-<button class="btn btn-primary btn-lg" [routerLink]="['/paso9']">Siguiente</button>
+	</div>
+
+	<div *ngIf="gananciaPoder2013YCN == true">
+		<h3>Como usted no llega a la cuantía mínima, el cambio de norma de 2022 no le va a afectar</h3>
+		<h3>Su ganancia seguirá siendo de:</h3>
+		<h1><span class="badge badge-success">{{resultado | currency:'EUR':true}}</span></h1>
+	</div>
+
+	<hr>
+	<button class="btn btn-primary btn-lg" [routerLink]="['/paso9']">Siguiente</button>
 </div>

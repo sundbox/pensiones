@@ -12,6 +12,7 @@ export class Paso3Component implements OnInit {
   constructor(private _datos:DatosService,
   				private router:Router ) { 
   	this.pension_mensual = this._datos.calculaEscenario(1);
+    this._datos.setItem("pension2013", this.pension_mensual);
 
   }
 
@@ -21,16 +22,16 @@ export class Paso3Component implements OnInit {
   evaluarYSeguir() {
     debugger;
   	if(this.pension_mensual > 2573.70) {
-      this._datos.setItem('pension_real', this.pension_mensual);
-      this._datos.setItem("resultado1", 2573.70);
+      this._datos.setItem('pension2013', this.pension_mensual);
+      this._datos.setItem("pensionLim2013", 2573.70);
   		this.router.navigate(['/paso4']);
   	} else if(this.pension_mensual < 605.1) {
-      this._datos.setItem('pension_real', this.pension_mensual);
-      this._datos.setItem("resultado1", 605.1);
+      this._datos.setItem('pension2013', this.pension_mensual);
+      this._datos.setItem("pensionLim2013", 605.1);
       this.router.navigate(['/paso4']);
     } else {
-      this._datos.setItem('pension_real', this.pension_mensual);
-      this._datos.setItem("resultado1", this.pension_mensual);
+      this._datos.setItem('pension2013', this.pension_mensual);
+      this._datos.setItem("pensionLim2013", this.pension_mensual);
   		this.router.navigate(['/paso5']);
   	}
   }

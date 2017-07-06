@@ -1,8 +1,29 @@
 <div class="text-center animated fadeIn">
 
-<h3>La realidad es que usted ha perdido:</h3>
-<h1><span class="badge badge-danger">{{resultado | currency:'EUR':true}}</span></h1>
-<h3>Perdiendo esa cantidad al pasar a su jubilacion.</h3>
+
+<div *ngIf="resultado > 0">
+
+	<h3>La realidad es que usted ha perdido:</h3>
+	<h1><span class="badge badge-danger">{{resultado | currency:'EUR':true}}</span></h1>
+	<h3>Perdiendo esa cantidad al pasar a su jubilacion.</h3>
+
+</div>
+
+<div *ngIf="resultado == 0">
+
+	<h3>Como usted ha trabajado más de 35.5 años, no tendrá ninguna pérdida</h3>
+
+</div>
+
+<div *ngIf="resultado < 0">
+
+	<h3>La realidad es que usted ha ganado:</h3>
+	<h1><span class="badge badge-success">{{resultadoAbs | currency:'EUR':true}}</span></h1>
+	<h3>Usted no llega a la cotización mínima, y por ello la Seguridad Social eleva su pensión a la mínima legal.</h3>
+
+</div>
+
+
 
 <hr>
 <button class="btn btn-primary btn-lg" [routerLink]="['/paso7']">Siguiente</button>
