@@ -1,16 +1,28 @@
 <div class="text-center animated fadeIn">
 
+
+
+
 <h3>La hucha de las pensiones es un dinero de la Seguridad Social, para cubrir los años en los que hay más gastos que ingresos en sus cuentas, y </h3>
-<h1>¡esta hucha cada vez es más pequeña¡</h1>
-<h3>Podrían bajar las pensiones máximas en <span class="badge badge-danger">{{500 | currency:'EUR':true}}</span></h3>
+<h3>Podrían bajar las pensiones máximas en <span class="badge badge-primary">{{500 | currency:'EUR':true}}</span></h3>
 
 
 <br/>
 
-<h3>A usted le afectaría esta norma reduciendo su pensión en:</h3>
-<h1><span class="badge badge-danger">{{perdidaPoderPensionMax | currency:'EUR':true}}</span></h1>
+<div *ngIf="perdidaPoderPensionMax == 0">
 
+	<h3>A usted no le afectaría esta norma debido a que la cuantía de su pensión no superaría la nueva limitación</h3>
 
+</div>
+
+<div *ngIf="perdidaPoderPensionMax > 0">
+
+	<h3>A usted le afectaría esta norma reduciendo su pensión en:</h3>
+	<h1><span class="badge badge-danger">{{perdidaPoderPensionMax | currency:'EUR':true}}</span></h1>
+
+	<h3>Esto se traduce en una pérdida de poder adquisitivo de <span class="badge badge-danger">{{porcentajePerdida | number : '1.2-2'}}%</span></h3>
+
+</div>
 
 <hr>
 <button class="btn btn-primary btn-lg" [routerLink]="['/paso11']">Siguiente</button>

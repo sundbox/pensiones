@@ -9,7 +9,9 @@ import { DatosService } from '../../services/datos.service';
 export class Paso8Component implements OnInit {
 
    resultado:number;
-   gananciaPoder2013YCN:boolean = false;
+   resultadoAbs:number;
+   pensionLimCN:number;
+   casoEspecialPBaja37A:boolean=false;
   constructor( private _datos:DatosService ) { 
     debugger;
   	this.resultado = this._datos.calculaEscenario(2);
@@ -20,15 +22,23 @@ export class Paso8Component implements OnInit {
 
     this._datos.setItem('pensionLimCN', pensionLimCN);
 
+    this.pensionLimCN = pensionLimCN;
+
     this.resultado = this._datos.getItem('baseCotizacionMensual')-pensionLimCN;
 
   	this._datos.setItem('perdidaPoderCN', this.resultado);
 
     //Si en 2013 y en CN ha obtenido beneficio, se indica en la vista
     let perdidaPoder2013 = this._datos.getItem('perdidaPoder2013');
-    if(perdidaPoder2013<0 && this.resultado<0){
-      this.gananciaPoder2013YCN = true;
-      this.resultado = -1*this.resultado;
+    if(this.resultado<0){
+      this.resultadoAbs = -1*this.resultado;
+    }
+
+    //Caso especial. Si la cotización se le ha elevado a la mínima (resultado<0) y ha trabajado 37 años exactamente, no afectará
+    let anyosCotizados = this._datos.getItem('anyosCotizados');
+
+    if(this.resultado<0 && anyosCotizados == 37){
+      this.casoEspecialPBaja37A = true;
     }
 
 

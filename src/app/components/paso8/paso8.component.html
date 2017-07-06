@@ -1,18 +1,29 @@
 <div class="text-center animated fadeIn" >
 
-	<div *ngIf="gananciaPoder2013YCN == false">
+	<div *ngIf="resultado > 0 && casoEspecialPBaja37A == false">
 
-		<h3>Hay que trabajar mas para obtener la misma cuantía</h3>
-		<h3>Si aplicamos la norma de 2022, que será la que usted tenga cuando se jubile, tendrá una pérdida de poder adquisitivo de:</h3>
+		<h3>A partir de 2022, habrá que trabajar mas para obtener la misma cuantía</h3>
+		<h3>Si aplicamos esa norma, que será la que usted tenga cuando se jubile, tendrá una pérdida de poder adquisitivo de:</h3>
 
 		<h1><span class="badge badge-danger">{{resultado | currency:'EUR':true}}</span></h1>
 
 	</div>
 
-	<div *ngIf="gananciaPoder2013YCN == true">
+	<div *ngIf="resultado < 0 && casoEspecialPBaja37A == false">
 		<h3>Como usted no llega a la cuantía mínima, el cambio de norma de 2022 no le va a afectar</h3>
 		<h3>Su ganancia seguirá siendo de:</h3>
-		<h1><span class="badge badge-success">{{resultado | currency:'EUR':true}}</span></h1>
+		<h1><span class="badge badge-success">{{resultadoAbs | currency:'EUR':true}}</span></h1>
+	</div>
+
+	<div *ngIf="resultado == 0 && casoEspecialPBaja37A == false">
+		<h3>Como usted ha trabajado 37 años, usted cobrará el <span class="badge badge-success">100%</span> de su pensión</h3>
+		<h1><span class="badge badge-primary">{{pensionLimCN | currency:'EUR':true}}</span></h1>
+	</div>
+
+	<div *ngIf="casoEspecialPBaja37A == true">
+		<h3>Como su pensión se eleva a la mínima legal y ha trabajado 37 años, a usted el cambio de norma no le afectará</h3>
+		<h3>Usted cobrará su pensión mínima de:</h3>
+		<h1><span class="badge badge-primary">{{pensionLimCN | currency:'EUR':true}}</span></h1>
 	</div>
 
 	<hr>
