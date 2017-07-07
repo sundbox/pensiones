@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DatosService } from '../../services/datos.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-input-sueldo',
@@ -23,20 +24,15 @@ export class InputSueldoComponent implements OnInit {
   ngOnInit() {
   }
 
-  siguiente() {
-  	
+  siguiente(formulario:NgForm) {
 
-    if(this.sueldo > 0 && 
-      this.sueldo != null && 
-      this.anyosCotizados > 0 &&
-      this.anyosCotizados <= 37 && 
-      this.anyosCotizados != null) {
+    if(formulario.valid) {
       this._datos.setItem('sueldo', this.sueldo);
-    this._datos.setItem('meses_cotizados', this.meses_cotizados);
-    this._datos.setItem('anyosCotizados', this.anyosCotizados);
-    this.router.navigate(['paso3']);
-  }
+      this._datos.setItem('meses_cotizados', this.meses_cotizados);
+      this._datos.setItem('anyosCotizados', this.anyosCotizados);
+      this.router.navigate(['paso3']);
+    }
 
-  
-}
+
+  }
 }

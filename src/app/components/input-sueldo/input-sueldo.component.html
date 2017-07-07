@@ -1,34 +1,57 @@
 <div class=" text-center animated fadeIn">
 
-<h3>¿Qué sueldo le gustaría o cree que percibirá hasta su jubilación?</h3>
+  <h3>¿Qué sueldo le gustaría o cree que percibirá hasta su jubilación?</h3>
 
-<div class="form-group col-md-4 push-md-4 text-center">
-    <input 
-    	type="number" 
-    	class="form-control" 
-    	id="sueldo" 
-    	min=0
-    	required
-    	placeholder="Pon tu sueldo aqui"
-    	[(ngModel)]="sueldo">
+  <form novalidate="" (ngSubmit)="siguiente(formulario)" #formulario="ngForm">
 
-     <input 
-      type="number" 
-      class="form-control" 
-      id="anyosCotizados" 
-      placeholder="Años Cotizados aqui"
-      min=0
-      max=37
-      required
-      [(ngModel)]="anyosCotizados">
+    <div class="form-group col-md-6 push-md-3 text-center">
+      <div class="form-group" [ngClass]="{'has-danger': sueldoinput.touched && sueldoinput.errors?.required}">
 
-  </div>
+        <input 
+        type="number" 
+        class="form-control form-control-lg text-center" 
+        name="sueldo" 
+        id="sueldo" 
+        min=0
+        required
+        placeholder="Pon tu sueldo aqui"
+        [(ngModel)]="sueldo"
+        #sueldoinput="ngModel">
+        <div class="form-control-feedback" *ngIf="sueldoinput.touched && sueldoinput.errors?.required" >
+          &times; Falta poner el sueldo requerido
+        </div>
+
+      </div>
+      <div class="form-group" [ngClass]="{'has-danger': anyosinput.touched && (anyosinput.value > 37 || anyosinput.errors?.required)}">
+        <input 
+        type="number" 
+        class="form-control form-control-lg text-center" 
+        name="anyosCotizados" 
+        id="anyosCotizados" 
+        placeholder="Años Cotizados aqui"
+        min="0"
+        max="37"
+        required
+        [(ngModel)]="anyosCotizados"
+        #anyosinput="ngModel">
+
+        <div class="form-control-feedback" *ngIf="anyosinput.touched && anyosinput.value > 37">
+          &times; Como máximo puedes cotizar 37 años
+        </div>
+
+        <div class="form-control-feedback" *ngIf="anyosinput.touched && anyosinput.errors?.required">
+          &times; Falta poner los años que has cotizado
+        </div>
+      </div>
 
 
-  <button class="btn btn-primary btn-lg" 
-  			 (click)="siguiente()"
-			 [ngClass]="(sueldo == 0 || sueldo == null || 
-                  anyosCotizados == 0 ||anyosCotizados > 36 || anyosCotizados == null) ? 'disabled' : ''"
-  			 >Siguiente</button>
+      
 
-</div>
+      
+
+
+      <button class="btn btn-primary btn-lg" type="submit" [disabled]="!formulario.valid">Siguiente</button>
+
+    </div>
+
+  </form>
