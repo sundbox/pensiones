@@ -14,7 +14,7 @@ export class InputSueldoComponent implements OnInit {
   anyosCotizados:number = 34;
 
   constructor( private router:Router,
-  				private _datos:DatosService ) { 
+    private _datos:DatosService ) { 
     this.sueldo = this._datos.getItem('sueldo');
     this.meses_cotizados = this._datos.getItem('meses_cotizados');
     this.anyosCotizados = this._datos.getItem('anyosCotizados');
@@ -24,9 +24,19 @@ export class InputSueldoComponent implements OnInit {
   }
 
   siguiente() {
-  	this._datos.setItem('sueldo', this.sueldo);
-    this._datos.setItem('meses_cotizados', this.meses_cotizados)
+  	
+
+    if(this.sueldo > 0 && 
+      this.sueldo != null && 
+      this.anyosCotizados > 0 &&
+      this.anyosCotizados <= 37 && 
+      this.anyosCotizados != null) {
+      this._datos.setItem('sueldo', this.sueldo);
+    this._datos.setItem('meses_cotizados', this.meses_cotizados);
     this._datos.setItem('anyosCotizados', this.anyosCotizados);
-  	this.router.navigate(['paso3']);
+    this.router.navigate(['paso3']);
   }
+
+  
+}
 }
