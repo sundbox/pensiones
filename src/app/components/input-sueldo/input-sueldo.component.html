@@ -18,7 +18,7 @@
         [(ngModel)]="sueldo"
         #sueldoinput="ngModel">
         <div class="form-control-feedback" *ngIf="sueldoinput.touched && sueldoinput.errors?.required" >
-          &times; Falta poner el sueldo requerido
+          &times; <b>Falta poner el sueldo requerido</b>
         </div>
 
       </div>
@@ -36,11 +36,11 @@
         #anyosinput="ngModel">
 
         <div class="form-control-feedback" *ngIf="anyosinput.touched && anyosinput.value > 37">
-          &times; Como máximo puedes cotizar 37 años
+          &times; <b>Como máximo puedes cotizar 37 años</b>
         </div>
 
         <div class="form-control-feedback" *ngIf="anyosinput.touched && anyosinput.errors?.required">
-          &times; Falta poner los años que has cotizado
+          &times; <b>Falta poner los años que has cotizado</b>
         </div>
       </div>
 
