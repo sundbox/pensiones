@@ -157,6 +157,8 @@ export class DatosService {
 
 		let numMesesCotizados = numAnyosCotizados * 12;
 
+		this.setItem('numMesesCotizados', numMesesCotizados);
+
 		let base_cotizacion_25 = this.calculoBaseCotizacionAnual(this.getItem('sueldo'));
 
 		let base_cotizacion = base_cotizacion_25 / this.divisor;

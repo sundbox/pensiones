@@ -28,7 +28,7 @@ export class Paso12Component {
                 // OR //
                 beginAtZero: true,   // minimum value will be 0.
                 stepSize: 200,
-                suggestedMax: 1400, 
+                suggestedMax: 800, 
             }
         }]
     }

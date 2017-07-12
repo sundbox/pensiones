@@ -13,8 +13,11 @@ export class Paso4Component implements OnInit {
   	this.pensionLim2013 = this._datos.getItem('pensionLim2013');
   	//Comprobamos si ha perdido o ganando
 	let pension2013 = this._datos.getItem('pension2013');
+
+
   	if(this.pensionLim2013>pension2013){
   		this.gananciaPoder = true;
+      this._datos.setItem('gananciaPoderCantidad',this.pensionLim2013-pension2013);
   	}
 
   }

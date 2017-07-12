@@ -31,7 +31,7 @@ export class Paso8Component implements OnInit {
     //Si en 2013 y en CN ha obtenido beneficio, se indica en la vista
     let perdidaPoder2013 = this._datos.getItem('perdidaPoder2013');
     if(this.resultado<0){
-      this.resultadoAbs = -1*this.resultado;
+      this.resultadoAbs = this.resultadoAbs = this._datos.getItem('gananciaPoderCantidad');
     }
 
     //Caso especial. Si la cotización se le ha elevado a la mínima (resultado<0) y ha trabajado 37 años exactamente, no afectará

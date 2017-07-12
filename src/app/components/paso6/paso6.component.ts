@@ -12,15 +12,15 @@ export class Paso6Component implements OnInit {
 
   resultado:number; 
   resultadoAbs:number; 
-  constructor( private _datos:DatosService ) { 
-    debugger;
+  constructor( private _datos:DatosService ) {
   	//this.resultado = this._datos.calculaEscenario(1) - this._datos.getItem('resultado1');
     let perdidaPoder2013 = this._datos.getItem('baseCotizacionMensual')-this._datos.getItem('pensionLim2013');
     this._datos.setItem('perdidaPoder2013',perdidaPoder2013);
     this.resultado = perdidaPoder2013;
 
     if(this.resultado<0){
-      this.resultadoAbs = -1*this.resultado;
+      this.resultadoAbs = this._datos.getItem('gananciaPoderCantidad');
+      
     }
     
   }
