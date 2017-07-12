@@ -28,3 +28,33 @@
   animation-name: fadeIn;
 }
 
+@media screen and (min-width: 481px) {
+  #header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color:#ffffff;
+    text-shadow: 1px 1px 4px rgba(0,0,0,.8);
+    background-image: url("assets/img/header-bg.jpg");
+    background-size: 100% auto;
+    background-position: center 80%;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  #header {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color:#ffffff;
+    text-shadow: 1px 1px 4px rgba(0,0,0,.8);
+    background-image: url("assets/img/header-bg.jpg");
+    background-size: auto 100%;
+    background-position: center 80%;
+
+  }
+
+  h1 {font-size: 150%;}
+  h2 {font-size: 140%;}
+  h3 {font-size: 130%;}
+  h4 {font-size: 120%;}
+  h5 {font-size: 110%;}
+}

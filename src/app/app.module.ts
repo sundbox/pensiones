@@ -24,6 +24,8 @@ import { Paso9Component } from './components/paso9/paso9.component';
 import { Paso10Component } from './components/paso10/paso10.component';
 import { Paso11Component } from './components/paso11/paso11.component';
 import { Paso12Component } from './components/paso12/paso12.component';
+import { Paso13Component } from './components/paso13/paso13.component';
+import { Paso14Component } from './components/paso14/paso14.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { Paso12Component } from './components/paso12/paso12.component';
     Paso9Component,
     Paso10Component,
     Paso11Component,
-    Paso12Component
+    Paso12Component,
+    Paso13Component,
+    Paso14Component
   ],
   imports: [
     BrowserModule,

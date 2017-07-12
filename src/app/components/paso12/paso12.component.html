@@ -15,27 +15,28 @@
   </div>
 
   <div class="col-md-12 text-center" id="msg1" *ngIf="graficaHelper.mostrarMsg1">
-    <h4>En la siguiente grafica vera la evolucion de su sueldo.</h4>
+    <h4>En la siguiente gráfica vera la evolución de su pensión.</h4>
     <button class="btn btn-primary" (click)="avanzaGrafica(1)">Siguiente</button>
   </div>
 
    <div class="col-md-12 text-center" id="msg2" *ngIf="graficaHelper.mostrarMsg2">
-    <h4>GASTO texto texto texto</h4>
+    <h4>Esta es la evolución de su gasto IPC</h4>
     <button class="btn btn-primary" (click)="avanzaGrafica(2)">Siguiente</button>
   </div>
 
    <div class="col-md-12 text-center" id="msg3" *ngIf="graficaHelper.mostrarMsg3">
-    <h4>Ingreso MAX  texto texto texto</h4>
+    <h4>Esta es la evolución de su pensión máxima, siendo el caso mas improbable</h4>
     <button class="btn btn-primary" (click)="avanzaGrafica(3)">Siguiente</button>
   </div>
 
   <div class="col-md-12 text-center" id="msg4" *ngIf="graficaHelper.mostrarMsg4">
-    <h4>Ingreso MIN  texto texto texto</h4>
-    <button class="btn btn-primary" (click)="graficaHelper.mostrarTabla = true">Ver tabla</button>
+    <h4>Esta es la evolución de su pensión al mínimo que establece la ley, que es el caso más probable.</h4>
+    <!-- <button class="btn btn-primary" (click)="graficaHelper.mostrarTabla = true">Ver tabla</button> -->
+    <button class="btn btn-primary" [routerLink]="['/paso13']">Siguiente</button>
   </div>
 
 
-  <div class="col-md-12 table-responsive" *ngIf="graficaHelper.mostrarTabla">
+<!--   <div class="col-md-12 table-responsive" *ngIf="graficaHelper.mostrarTabla">
 
     <table class="table table-condensed">
       <tr>
@@ -45,7 +46,8 @@
         <td><b>{{d.label}}</b></td><td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j] | currency:'EUR':true}}</td>
       </tr>
     </table>
-  </div>
+
+  </div>    -->
 
   
 </div>

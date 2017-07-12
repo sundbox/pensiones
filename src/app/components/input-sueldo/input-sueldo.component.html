@@ -14,15 +14,17 @@
         id="sueldo" 
         min=0
         required
-        placeholder="Pon tu sueldo aqui"
+        placeholder="Pon tu sueldo mensual"
         [(ngModel)]="sueldo"
         #sueldoinput="ngModel">
         <div class="form-control-feedback" *ngIf="sueldoinput.touched && sueldoinput.errors?.required" >
           &times; <b>Falta poner el sueldo requerido</b>
         </div>
-
       </div>
+
+      
       <div class="form-group" [ngClass]="{'has-danger': anyosinput.touched && (anyosinput.value > 37 || anyosinput.errors?.required)}">
+      <small class="form-text text-muted">Ponga sus años de cotización, teniendo en cuenta que la media española son 34 años.</small>
         <input 
         type="number" 
         class="form-control form-control-lg text-center" 

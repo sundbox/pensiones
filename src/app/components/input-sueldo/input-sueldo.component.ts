@@ -18,7 +18,7 @@ export class InputSueldoComponent implements OnInit {
     private _datos:DatosService ) { 
     this.sueldo = this._datos.getItem('sueldo');
     this.meses_cotizados = this._datos.getItem('meses_cotizados');
-    this.anyosCotizados = this._datos.getItem('anyosCotizados');
+    this.anyosCotizados = (this._datos.getItem('anyosCotizados') ? this._datos.getItem('anyosCotizados') : this.anyosCotizados );
   }
 
   ngOnInit() {
